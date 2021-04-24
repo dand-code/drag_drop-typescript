@@ -1,10 +1,9 @@
 // autobind decorator
-
 function autobind(
-    _target: any,
-    _methodName: string,
+    _: any, //target
+    _2: string, //methodName
     descriptor: PropertyDescriptor
-) {
+){
     const originalMethod = descriptor.value;
     const adjDescriptor: PropertyDescriptor = {
         configurable: true,
@@ -14,11 +13,9 @@ function autobind(
         }
     }; 
     return adjDescriptor;
- }
+}
  
 // ProjectInput class
-
-
 class ProjectInput {
     templateElement: HTMLTemplateElement;
     hostElement: HTMLDivElement;
@@ -67,8 +64,7 @@ class ProjectInput {
     private submitHandler(event: Event) {
         event.preventDefault();
         const userInput = this.gatherUserInput();
-        // console.log(this.titleInputElement.value);
-        if (Array.isArray(userInput)) { //validate if it is a array
+        if (Array.isArray(userInput)) {
             const [title, desc, people] = userInput;
             console.log(title, desc, people);
             this.clearInputs();
